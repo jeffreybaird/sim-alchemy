@@ -10,3 +10,46 @@
 
 * Any Elixir code can `spawn_link()` a process
 * Processes are super lightweight
+* Favor `spawn_link()` over `spawn`
+
+## Sending Messages
+
+* All interactions are through message sending
+* Messages are copied to the new process
+* Messages are recieved into mailbox/queue-like structures
+* You can process them out of order but this is a bad idea
+* Match ever message unless you have a good reason not to.
+
+## Process Flow
+
+1. spawn_link
+2. pass it a function that calls itself
+3. external process sends it a message which goes into the process mailbox
+4. Your function checks it's mailbox
+5. Whenever you want you can return from your function and that ends the process.
+
+## Asynchronous Outside, Synchronous Inside
+
+1. If you are in process 1, you don't know where process 2 is.
+2. Inside the process, you are synchronous, you only deal with one message at a time.
+
+## Practice
+
+1. Elixir in Action
+2. Turtles, Termites, and Traffic Jams
+
+## The Simulation
+
+1. Fill a forest with random trees
+2. All trees on the left edge begin on fire
+3. A fire burns for four turns, then dies
+4. (I missed the last rule)
+
+1. One process tracks the "world"
+  a. has the forest data structure
+  b. Spawns fires as needed
+2. Each fire is a process
+  a. regularly tess the world to advance this specific fired
+  b. Exits as the fire dies
+
+
