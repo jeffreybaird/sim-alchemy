@@ -1,0 +1,12 @@
+# Process Basics:
+
+1. Spawn new processes
+
+2. Send a message to a process
+
+3. Receive a message
+
+## Spawning a Process
+
+* Any Elixir code can `spawn_link()` a process
+* Processes are super lightweight
